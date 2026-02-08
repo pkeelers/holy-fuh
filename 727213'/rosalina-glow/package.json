@@ -1,0 +1,8 @@
+{
+  "name": "rosalina-glow-root",
+  "private": true,
+  "scripts": {
+    "build": "npm --prefix rosalina-glow run build",
+    "start": "npm --prefix rosalina-glow run preview"
+  }
+}
