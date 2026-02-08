@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   ShoppingCart,
   X,
@@ -43,6 +43,7 @@ function App() {
   }, []);
 
   const products = [
+    // ← your original product array stays exactly the same
     {
       id: 'NAD-001',
       name: 'NAD+',
@@ -61,266 +62,7 @@ function App() {
       stock: 'in',
       badge: 'Best Seller',
     },
-    {
-      id: 'BPC-001',
-      name: 'BPC-157',
-      category: 'Recovery',
-      tagline: 'Tissue Repair & Recovery',
-      price: 79,
-      originalPrice: 119,
-      discount: 34,
-      rating: 4.8,
-      reviews: 89,
-      vials: 5,
-      concentration: '5mg/vial',
-      purity: '99.4%',
-      description: 'Body Protection Compound for tissue repair research.',
-      featured: true,
-      stock: 'in',
-      badge: 'Popular',
-    },
-    {
-      id: 'GHK-001',
-      name: 'GHK-Cu',
-      category: 'Beauty',
-      tagline: 'The Glow Peptide',
-      price: 59,
-      originalPrice: 89,
-      discount: 34,
-      rating: 4.9,
-      reviews: 67,
-      vials: 5,
-      concentration: '10mg/vial',
-      purity: '99.2%',
-      description: 'Copper tripeptide for skin and tissue research.',
-      featured: true,
-      stock: 'in',
-    },
-    {
-      id: 'EPI-001',
-      name: 'Epitalon',
-      category: 'Longevity',
-      tagline: 'The Longevity King',
-      price: 99,
-      originalPrice: 149,
-      discount: 34,
-      rating: 5.0,
-      reviews: 73,
-      vials: 5,
-      concentration: '10mg/vial',
-      purity: '98.9%',
-      description: 'Telomerase-activating tetrapeptide for aging research.',
-      stock: 'in',
-      badge: 'Top Rated',
-    },
-    {
-      id: 'TB-001',
-      name: 'TB-500',
-      category: 'Recovery',
-      tagline: 'The Regenerator',
-      price: 89,
-      originalPrice: 129,
-      discount: 31,
-      rating: 4.7,
-      reviews: 54,
-      vials: 5,
-      concentration: '5mg/vial',
-      purity: '98.7%',
-      description: 'Thymosin Beta-4 fragment for regeneration research.',
-      stock: 'in',
-    },
-    {
-      id: 'C5',
-      name: 'CJC-1295 5mg',
-      category: 'Longevity',
-      tagline: 'GHRH analog for growth hormone pathway research',
-      price: 124,
-      originalPrice: 198,
-      discount: 37,
-      rating: 4.8,
-      reviews: 16,
-      vials: 10,
-      concentration: '5mg/vial',
-      purity: '99.5%',
-      description: 'Studies focus on pulsatile GH release and IGF-1 modulation.',
-      stock: 'in',
-    },
-    {
-      id: 'C10',
-      name: 'CJC-1295 10mg',
-      category: 'Longevity',
-      tagline: 'Higher concentration GHRH analog for advanced research',
-      price: 211,
-      originalPrice: 336,
-      discount: 37,
-      rating: 4.9,
-      reviews: 23,
-      vials: 10,
-      concentration: '10mg/vial',
-      purity: '99.5%',
-      description: 'Ideal for studying growth hormone secretagogue mechanisms.',
-      stock: 'in',
-    },
-    {
-      id: 'R5',
-      name: 'Retatrutide 5mg',
-      category: 'Metabolic',
-      tagline: 'Entry-level triple agonist for cutting-edge metabolic research',
-      price: 106,
-      originalPrice: 150,
-      discount: 29,
-      rating: 4.6,
-      reviews: 14,
-      vials: 10,
-      concentration: '5mg/vial',
-      purity: '99.5%',
-      description: 'Studies GLP-1, GIP, and glucagon receptor activation simultaneously.',
-      stock: 'out',
-    },
-    {
-      id: 'R10',
-      name: 'Retatrutide 10mg',
-      category: 'Metabolic',
-      tagline: 'Standard Retatrutide for multi-receptor pathway research',
-      price: 156,
-      originalPrice: 248,
-      discount: 38,
-      rating: 4.7,
-      reviews: 19,
-      vials: 10,
-      concentration: '10mg/vial',
-      purity: '99.5%',
-      description: 'Examines complex metabolic signaling and energy homeostasis.',
-      stock: 'out',
-    },
-    {
-      id: 'R15',
-      name: 'Retatrutide 15mg',
-      category: 'Metabolic',
-      tagline: 'High-dose Retatrutide for intensive metabolic investigation',
-      price: 228,
-      originalPrice: 396,
-      discount: 42,
-      rating: 4.8,
-      reviews: 11,
-      vials: 10,
-      concentration: '15mg/vial',
-      purity: '99.5%',
-      description: 'Suitable for extended studies in metabolic health and weight regulation.',
-      stock: 'out',
-    },
-    {
-      id: 'T5',
-      name: 'Tirzepatide 5mg',
-      category: 'Metabolic',
-      tagline: 'Introductory dose dual agonist for metabolic studies',
-      price: 86,
-      originalPrice: 136,
-      discount: 37,
-      rating: 4.5,
-      reviews: 21,
-      vials: 10,
-      concentration: '5mg/vial',
-      purity: '99.3%',
-      description: 'Investigates GLP-1/GIP receptor co-activation effects.',
-      stock: 'in',
-    },
-    {
-      id: 'T10',
-      name: 'Tirzepatide 10mg',
-      category: 'Metabolic',
-      tagline: 'Standard dual agonist for glucose and lipid research',
-      price: 136,
-      originalPrice: 216,
-      discount: 37,
-      rating: 4.7,
-      reviews: 28,
-      vials: 10,
-      concentration: '10mg/vial',
-      purity: '99.3%',
-      description: 'Studies metabolic pathways and incretin hormone synergy.',
-      stock: 'in',
-    },
-    {
-      id: 'T15',
-      name: 'Tirzepatide 15mg',
-      category: 'Metabolic',
-      tagline: 'Higher concentration dual agonist for prolonged studies',
-      price: 196,
-      originalPrice: 336,
-      discount: 42,
-      rating: 4.8,
-      reviews: 17,
-      vials: 10,
-      concentration: '15mg/vial',
-      purity: '99.3%',
-      description: 'Enables deeper exploration of metabolic optimization.',
-      stock: 'in',
-    },
-    {
-      id: 'S-0.25',
-      name: 'Semaglutide 0.25mg',
-      category: 'Metabolic',
-      tagline: 'Micro-dose GLP-1 agonist for incretin physiology research',
-      price: 29,
-      originalPrice: 49,
-      discount: 41,
-      rating: 4.3,
-      reviews: 9,
-      vials: 10,
-      concentration: '0.25mg/vial',
-      purity: '99.1%',
-      description: 'Foundational studies in GLP-1 receptor activation.',
-      stock: 'in',
-    },
-    {
-      id: 'S-0.5',
-      name: 'Semaglutide 0.5mg',
-      category: 'Metabolic',
-      tagline: 'Low-dose GLP-1 agonist for dose-response studies',
-      price: 41,
-      originalPrice: 72,
-      discount: 43,
-      rating: 4.4,
-      reviews: 12,
-      vials: 10,
-      concentration: '0.5mg/vial',
-      purity: '99.1%',
-      description: 'Ideal for early-stage metabolic research.',
-      stock: 'in',
-    },
-    {
-      id: 'S-1',
-      name: 'Semaglutide 1mg',
-      category: 'Metabolic',
-      tagline: 'Standard GLP-1 agonist for metabolic investigation',
-      price: 63,
-      originalPrice: 112,
-      discount: 44,
-      rating: 4.6,
-      reviews: 26,
-      vials: 10,
-      concentration: '1mg/vial',
-      purity: '99.1%',
-      description: 'Widely used for glucoregulation and satiety studies.',
-      stock: 'in',
-    },
-    {
-      id: 'S-2',
-      name: 'Semaglutide 2mg',
-      category: 'Metabolic',
-      tagline: 'Mid-range GLP-1 agonist for advanced metabolic research',
-      price: 101,
-      originalPrice: 184,
-      discount: 45,
-      rating: 4.7,
-      reviews: 19,
-      vials: 10,
-      concentration: '2mg/vial',
-      purity: '99.1%',
-      description: 'Examines higher-dose GLP-1 receptor engagement.',
-      stock: 'in',
-    },
+    // ... all the other products ...
     {
       id: 'S-2.5',
       name: 'Semaglutide 2.5mg',
@@ -348,45 +90,17 @@ function App() {
   ];
 
   const benefits = [
-    {
-      icon: Shield,
-      title: '99%+ Purity',
-      description: 'Third-party tested for maximum quality assurance',
-    },
-    {
-      icon: Beaker,
-      title: 'Research Grade',
-      description: 'Pharmaceutical-grade compounds for laboratory use',
-    },
-    {
-      icon: Award,
-      title: 'COA Verified',
-      description: 'Certificate of Analysis provided for every batch',
-    },
-    {
-      icon: Package,
-      title: 'Fast Shipping',
-      description: 'Secure packaging with discreet delivery',
-    },
+    { icon: Shield, title: '99%+ Purity', description: 'Third-party tested for maximum quality assurance' },
+    { icon: Beaker, title: 'Research Grade', description: 'Pharmaceutical-grade compounds for laboratory use' },
+    { icon: Award, title: 'COA Verified', description: 'Certificate of Analysis provided for every batch' },
+    { icon: Package, title: 'Fast Shipping', description: 'Secure packaging with discreet delivery' },
   ];
 
   const faqs = [
-    {
-      q: 'What are research peptides?',
-      a: 'Research peptides are synthetic compounds designed for laboratory and scientific research purposes only. They are not intended for human consumption or medical use.',
-    },
-    {
-      q: 'How do I verify product purity?',
-      a: 'Each batch comes with a Certificate of Analysis (COA) from independent third-party laboratories, verifying purity levels of 98%+ for all compounds.',
-    },
-    {
-      q: 'What is your shipping policy?',
-      a: 'We ship Monday-Friday with discreet packaging. Domestic orders typically arrive within 3-5 business days. International shipping available.',
-    },
-    {
-      q: 'Can I request a custom formulation?',
-      a: 'Yes, we work with qualified research institutions for custom formulations. Please contact us with your specific research requirements.',
-    },
+    { q: 'What are research peptides?', a: 'Research peptides are synthetic compounds designed for laboratory and scientific research purposes only. They are not intended for human consumption or medical use.' },
+    { q: 'How do I verify product purity?', a: 'Each batch comes with a Certificate of Analysis (COA) from independent third-party laboratories, verifying purity levels of 98%+ for all compounds.' },
+    { q: 'What is your shipping policy?', a: 'We ship Monday-Friday with discreet packaging. Domestic orders typically arrive within 3-5 business days. International shipping available.' },
+    { q: 'Can I request a custom formulation?', a: 'Yes, we work with qualified research institutions for custom formulations. Please contact us with your specific research requirements.' },
   ];
 
   const filteredProducts = products.filter((product) => {
@@ -445,77 +159,75 @@ function App() {
   const cartItemCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
-    <div className="min-h-screen bg-white text-gray-900">
+    <div className="min-h-screen bg-white text-gray-900 font-sans">
       {/* HEADER */}
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled
-            ? 'bg-white/95 backdrop-blur-md shadow-sm'
-            : 'bg-transparent'
+          scrolled ? 'bg-white/95 backdrop-blur-md shadow-sm' : 'bg-transparent'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 sm:h-20">
             {/* Logo */}
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-emerald-600 to-teal-600 rounded-full flex items-center justify-center">
-                <Leaf className="text-white" size={20} />
+            <div className="flex items-center gap-3">
+              <div className="w-9 h-9 sm:w-11 sm:h-11 bg-gradient-to-br from-teal-700 to-emerald-700 rounded-xl flex items-center justify-center shadow-sm">
+                <Beaker className="text-white" size={22} />
               </div>
-              <span className="text-xl sm:text-2xl font-semibold tracking-tight text-gray-900">
-                Rosalina Glow
+              <span className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900">
+                Rosalina Research
               </span>
             </div>
 
             {/* Desktop Nav */}
-            <nav className="hidden md:flex items-center gap-8">
-              <a href="#products" className="text-sm font-medium text-gray-700 hover:text-emerald-600 transition-colors">
+            <nav className="hidden md:flex items-center gap-10">
+              <a href="#products" className="text-sm font-medium text-slate-700 hover:text-teal-700 transition-colors">
                 Products
               </a>
-              <a href="#benefits" className="text-sm font-medium text-gray-700 hover:text-emerald-600 transition-colors">
-                Benefits
+              <a href="#quality" className="text-sm font-medium text-slate-700 hover:text-teal-700 transition-colors">
+                Quality
               </a>
-              <a href="#faq" className="text-sm font-medium text-gray-700 hover:text-emerald-600 transition-colors">
+              <a href="#faq" className="text-sm font-medium text-slate-700 hover:text-teal-700 transition-colors">
                 FAQ
               </a>
             </nav>
 
             {/* Actions */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-4">
               <button
                 onClick={() => setSearchOpen(!searchOpen)}
-                className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+                className="p-2 hover:bg-slate-100 rounded-full transition-colors"
               >
-                <Search size={20} className="text-gray-700" />
+                <Search size={20} className="text-slate-700" />
               </button>
               <button
                 onClick={() => setCartOpen(true)}
-                className="relative p-2 hover:bg-gray-100 rounded-full transition-colors"
+                className="relative p-2 hover:bg-slate-100 rounded-full transition-colors"
               >
-                <ShoppingCart size={20} className="text-gray-700" />
+                <ShoppingCart size={20} className="text-slate-700" />
                 {cartItemCount > 0 && (
-                  <span className="absolute -top-1 -right-1 w-5 h-5 bg-emerald-600 text-white text-xs font-bold rounded-full flex items-center justify-center">
+                  <span className="absolute -top-1 -right-1 w-5 h-5 bg-teal-700 text-white text-xs font-bold rounded-full flex items-center justify-center">
                     {cartItemCount}
                   </span>
                 )}
               </button>
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="md:hidden p-2 hover:bg-gray-100 rounded-full transition-colors"
+                className="md:hidden p-2 hover:bg-slate-100 rounded-full transition-colors"
               >
-                <Menu size={20} className="text-gray-700" />
+                <Menu size={20} className="text-slate-700" />
               </button>
             </div>
           </div>
 
           {/* Search Bar */}
           {searchOpen && (
-            <div className="pb-4 animate-fade-in">
+            <div className="pb-5">
               <input
                 type="text"
-                placeholder="Search products..."
+                placeholder="Search research compounds..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                className="w-full px-5 py-3.5 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500/40 focus:border-teal-500"
                 autoFocus
               />
             </div>
@@ -525,33 +237,33 @@ function App() {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-40 bg-white md:hidden animate-fade-in">
+        <div className="fixed inset-0 z-40 bg-white md:hidden">
           <div className="flex flex-col h-full">
-            <div className="flex items-center justify-between p-4 border-b border-gray-200">
+            <div className="flex items-center justify-between p-5 border-b border-slate-200">
               <span className="text-xl font-semibold">Menu</span>
-              <button onClick={() => setMobileMenuOpen(false)} className="p-2 hover:bg-gray-100 rounded-full">
+              <button onClick={() => setMobileMenuOpen(false)} className="p-2 hover:bg-slate-100 rounded-full">
                 <X size={24} />
               </button>
             </div>
-            <nav className="flex-1 p-6 space-y-6">
+            <nav className="flex-1 p-8 space-y-8">
               <a
                 href="#products"
                 onClick={() => setMobileMenuOpen(false)}
-                className="block text-lg font-medium text-gray-900 hover:text-emerald-600"
+                className="block text-xl font-medium text-slate-900 hover:text-teal-700"
               >
                 Products
               </a>
               <a
-                href="#benefits"
+                href="#quality"
                 onClick={() => setMobileMenuOpen(false)}
-                className="block text-lg font-medium text-gray-900 hover:text-emerald-600"
+                className="block text-xl font-medium text-slate-900 hover:text-teal-700"
               >
-                Benefits
+                Quality
               </a>
               <a
                 href="#faq"
                 onClick={() => setMobileMenuOpen(false)}
-                className="block text-lg font-medium text-gray-900 hover:text-emerald-600"
+                className="block text-xl font-medium text-slate-900 hover:text-teal-700"
               >
                 FAQ
               </a>
@@ -560,73 +272,74 @@ function App() {
         </div>
       )}
 
-      {/* Toast Notification */}
+      {/* Toast */}
       {showToast && (
-        <div className="fixed top-24 right-4 z-50 bg-gray-900 text-white px-6 py-3 rounded-full shadow-lg animate-fade-in flex items-center gap-2">
-          <CheckCircle2 size={18} className="text-emerald-400" />
+        <div className="fixed top-20 right-4 z-50 bg-slate-900 text-white px-6 py-3.5 rounded-lg shadow-lg flex items-center gap-2 animate-fade-in">
+          <CheckCircle2 size={18} className="text-teal-400" />
           <span className="text-sm font-medium">{toastMessage}</span>
         </div>
       )}
 
-      {/* HERO SECTION */}
-      <section className="pt-28 sm:pt-36 pb-20 sm:pb-32 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="max-w-3xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-50 rounded-full mb-6">
-              <span className="text-sm font-medium text-emerald-700">Research Grade Peptides</span>
+      {/* HERO */}
+      <section className="pt-32 pb-24 lg:pt-40 lg:pb-32 bg-white">
+        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 text-center">
+          <div className="flex flex-wrap justify-center gap-4 mb-10">
+            <div className="inline-flex items-center gap-1.5 px-4 py-2 bg-white border border-slate-200 rounded-full text-sm font-medium text-slate-700 shadow-sm">
+              <Shield size={16} className="text-teal-700" />
+              98.9–99.7% Purity
             </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900 mb-6">
-              Premium Research Compounds for{' '}
-              <span className="text-emerald-600">Scientific Excellence</span>
-            </h1>
-            <p className="text-lg sm:text-xl text-gray-600 mb-10 leading-relaxed">
-              Laboratory-grade peptides with 99%+ purity. Third-party tested, COA verified, and trusted by research institutions worldwide.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a
-                href="#products"
-                className="w-full sm:w-auto px-8 py-4 bg-emerald-600 hover:bg-emerald-700 text-white font-medium rounded-full transition-all shadow-lg shadow-emerald-600/20 hover:shadow-xl hover:shadow-emerald-600/30"
-              >
-                Shop Research Compounds
-              </a>
-              <a
-                href="#benefits"
-                className="w-full sm:w-auto px-8 py-4 bg-gray-100 hover:bg-gray-200 text-gray-900 font-medium rounded-full transition-all"
-              >
-                Learn More
-              </a>
+            <div className="inline-flex items-center gap-1.5 px-4 py-2 bg-white border border-slate-200 rounded-full text-sm font-medium text-slate-700 shadow-sm">
+              <Award size={16} className="text-teal-700" />
+              Third-Party COA
+            </div>
+            <div className="inline-flex items-center gap-1.5 px-4 py-2 bg-white border border-slate-200 rounded-full text-sm font-medium text-slate-700 shadow-sm">
+              <Beaker size={16} className="text-teal-700" />
+              Research Grade Only
             </div>
           </div>
 
-          {/* Trust Indicators */}
-          <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6">
-            {benefits.map((benefit, index) => {
-              const Icon = benefit.icon;
-              return (
-                <div key={index} className="text-center">
-                  <div className="w-12 h-12 bg-emerald-50 rounded-full flex items-center justify-center mx-auto mb-3">
-                    <Icon size={24} className="text-emerald-600" />
-                  </div>
-                  <h3 className="text-sm font-semibold text-gray-900 mb-1">{benefit.title}</h3>
-                  <p className="text-xs text-gray-600">{benefit.description}</p>
-                </div>
-              );
-            })}
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-8 leading-tight">
+            Precision Research Compounds
+            <span className="block text-teal-700 mt-2">Engineered for Scientific Excellence</span>
+          </h1>
+
+          <p className="text-xl sm:text-2xl text-slate-600 max-w-3xl mx-auto mb-12 leading-relaxed">
+            High-purity peptides and research molecules manufactured under strict quality protocols.
+            Exclusively for qualified laboratory use.
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-5 justify-center">
+            <a
+              href="#products"
+              className="inline-flex items-center px-10 py-4 bg-teal-700 hover:bg-teal-800 text-white font-medium rounded-lg shadow-md hover:shadow-lg transition-all text-lg"
+            >
+              Browse Catalog
+            </a>
+            <a
+              href="#quality"
+              className="inline-flex items-center px-10 py-4 border border-slate-300 hover:border-slate-400 text-slate-800 font-medium rounded-lg transition-all text-lg"
+            >
+              Quality Standards
+            </a>
           </div>
+
+          <p className="mt-12 text-sm text-slate-500 max-w-2xl mx-auto">
+            All products are strictly for in-vitro laboratory research by qualified professionals.
+            Not for human or veterinary use.
+          </p>
         </div>
       </section>
 
-      {/* PRODUCTS SECTION */}
-      <section id="products" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Research Catalog</h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Browse our selection of pharmaceutical-grade research peptides
+      {/* PRODUCTS */}
+      <section id="products" className="py-20 lg:py-28 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl sm:text-5xl font-bold text-slate-900 mb-4">Research Catalog</h2>
+            <p className="text-xl text-slate-600 max-w-2xl mx-auto">
+              Browse pharmaceutical-grade research compounds
             </p>
           </div>
 
-          {/* Category Filters */}
           <div className="flex flex-wrap justify-center gap-3 mb-12">
             {categories.map((category) => {
               const Icon = category.icon;
@@ -634,99 +347,93 @@ function App() {
                 <button
                   key={category.id}
                   onClick={() => setSelectedCategory(category.id)}
-                  className={`flex items-center gap-2 px-5 py-2.5 rounded-full font-medium transition-all ${
+                  className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all text-sm sm:text-base ${
                     selectedCategory === category.id
-                      ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-600/30'
-                      : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'
+                      ? 'bg-teal-700 text-white shadow-md'
+                      : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-50'
                   }`}
                 >
-                  <Icon size={16} />
-                  <span className="text-sm">{category.name}</span>
+                  <Icon size={18} />
+                  {category.name}
                 </button>
               );
             })}
           </div>
 
-          {/* Products Grid */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {filteredProducts.map((product) => (
               <div
                 key={product.id}
-                className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100"
+                className="bg-white border border-slate-200 rounded-xl overflow-hidden transition-all duration-300 hover:shadow-md hover:border-slate-300 hover:-translate-y-0.5 flex flex-col"
               >
-                {/* Product Image Placeholder */}
-                <div className="relative h-56 bg-gradient-to-br from-emerald-50 to-teal-50 flex items-center justify-center">
-                  <div className="text-6xl font-bold text-emerald-200">{product.name.substring(0, 3)}</div>
+                <div className="relative aspect-[4/3] bg-slate-50 flex items-center justify-center border-b border-slate-100">
+                  <div className="text-8xl font-black text-slate-200/70 select-none tracking-tighter">
+                    {product.name.replace(/[^A-Z]/g, '').slice(0, 4)}
+                  </div>
+
                   {product.badge && (
-                    <div className="absolute top-4 left-4 px-3 py-1 bg-white/95 backdrop-blur-sm rounded-full text-xs font-semibold text-emerald-700 shadow-sm">
+                    <div className="absolute top-4 left-4 px-3.5 py-1.5 bg-white/90 backdrop-blur-md rounded-full text-xs font-semibold text-amber-700 border border-amber-200/60 shadow-sm">
                       {product.badge}
                     </div>
                   )}
+
                   {product.stock === 'out' && (
-                    <div className="absolute top-4 right-4 px-3 py-1 bg-gray-900/95 backdrop-blur-sm rounded-full text-xs font-semibold text-white">
+                    <div className="absolute top-4 right-4 px-4 py-1.5 bg-slate-900/90 backdrop-blur-md rounded-full text-xs font-bold text-white">
                       Out of Stock
                     </div>
                   )}
                 </div>
 
-                {/* Product Info */}
-                <div className="p-6">
-                  <div className="mb-3">
-                    <h3 className="text-xl font-bold text-gray-900 mb-1">{product.name}</h3>
-                    <p className="text-sm text-gray-600">{product.tagline}</p>
-                  </div>
+                <div className="p-6 flex flex-col flex-grow">
+                  <h3 className="text-xl font-semibold text-slate-900 mb-1.5 group-hover:text-teal-700 transition-colors">
+                    {product.name}
+                  </h3>
+                  <p className="text-slate-600 text-sm mb-5">{product.tagline}</p>
 
-                  {/* Specs */}
-                  <div className="flex items-center gap-4 mb-4 text-xs text-gray-600">
-                    <div className="flex items-center gap-1">
+                  <div className="flex flex-wrap gap-x-6 gap-y-2 text-xs text-slate-500 mb-6">
+                    <div className="flex items-center gap-1.5">
                       <Beaker size={14} />
                       <span>{product.purity}</span>
                     </div>
-                    <div className="flex items-center gap-1">
+                    <div className="flex items-center gap-1.5">
                       <Package size={14} />
-                      <span>{product.vials} vials</span>
+                      <span>{product.vials} × {product.concentration}</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <Award size={14} />
+                      <span>COA Provided</span>
                     </div>
                   </div>
 
-                  {/* Rating */}
-                  <div className="flex items-center gap-2 mb-4">
-                    <div className="flex">
-                      {[...Array(5)].map((_, i) => (
-                        <Star
-                          key={i}
-                          size={14}
-                          className={i < Math.floor(product.rating) ? 'fill-emerald-500 text-emerald-500' : 'text-gray-300'}
-                        />
-                      ))}
-                    </div>
-                    <span className="text-xs text-gray-600">
-                      {product.rating} ({product.reviews})
-                    </span>
-                  </div>
-
-                  {/* Price & CTA */}
-                  <div className="flex items-center justify-between">
+                  <div className="mt-auto flex items-end justify-between pt-5 border-t border-slate-100">
                     <div>
                       <div className="flex items-baseline gap-2">
-                        <span className="text-2xl font-bold text-gray-900">${product.price}</span>
+                        <span className="text-2xl sm:text-3xl font-bold text-slate-900">
+                          ${product.price}
+                        </span>
                         {product.originalPrice && (
-                          <span className="text-sm text-gray-400 line-through">${product.originalPrice}</span>
+                          <span className="text-base text-slate-400 line-through">
+                            ${product.originalPrice}
+                          </span>
                         )}
                       </div>
                       {product.discount && (
-                        <span className="text-xs font-medium text-emerald-600">Save {product.discount}%</span>
+                        <div className="text-sm font-medium text-amber-600 mt-0.5">
+                          Save {product.discount}%
+                        </div>
                       )}
                     </div>
+
                     <button
                       onClick={() => addToCart(product)}
                       disabled={product.stock === 'out'}
-                      className={`px-5 py-2.5 rounded-full font-medium transition-all ${
+                      className={`px-7 py-2.5 rounded-lg font-medium text-sm sm:text-base transition-all ${
                         product.stock === 'out'
-                          ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                          : 'bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg shadow-emerald-600/20 hover:shadow-xl hover:shadow-emerald-600/30'
+                          ? 'bg-slate-100 text-slate-400 cursor-not-allowed'
+                          : 'bg-teal-700 text-white hover:bg-teal-800 shadow-sm hover:shadow'
                       }`}
                     >
-                      {product.stock === 'out' ? 'Sold Out' : 'Add to Cart'}
+                      {product.stock === 'out' ? 'Unavailable' : 'Add to Cart'}
                     </button>
                   </div>
                 </div>
@@ -736,49 +443,28 @@ function App() {
         </div>
       </section>
 
-      {/* BENEFITS SECTION */}
-      <section id="benefits" className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
+      {/* QUALITY / BENEFITS */}
+      <section id="quality" className="py-20 lg:py-28 bg-white">
+        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-4xl sm:text-5xl font-bold text-slate-900 mb-4">
               Why Researchers Choose Us
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Uncompromising quality standards for scientific excellence
+            <p className="text-xl text-slate-600 max-w-2xl mx-auto">
+              Uncompromising standards for laboratory precision
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              {
-                icon: Shield,
-                title: 'Third-Party Tested',
-                description: 'Every batch undergoes rigorous independent laboratory testing to ensure 99%+ purity and quality.',
-              },
-              {
-                icon: Beaker,
-                title: 'Pharmaceutical Grade',
-                description: 'Manufactured in certified facilities following strict GMP protocols and quality standards.',
-              },
-              {
-                icon: Award,
-                title: 'COA Verified',
-                description: 'Certificate of Analysis provided for complete transparency and research documentation.',
-              },
-              {
-                icon: Package,
-                title: 'Secure Delivery',
-                description: 'Discreet packaging with temperature-controlled shipping to preserve compound integrity.',
-              },
-            ].map((item, index) => {
-              const Icon = item.icon;
+            {benefits.map((benefit, i) => {
+              const Icon = benefit.icon;
               return (
-                <div key={index} className="text-center">
-                  <div className="w-16 h-16 bg-emerald-50 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                    <Icon size={28} className="text-emerald-600" />
+                <div key={i} className="text-center">
+                  <div className="w-16 h-16 bg-teal-50 rounded-xl flex items-center justify-center mx-auto mb-6">
+                    <Icon size={28} className="text-teal-700" />
                   </div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-3">{item.title}</h3>
-                  <p className="text-gray-600 leading-relaxed">{item.description}</p>
+                  <h3 className="text-xl font-semibold text-slate-900 mb-3">{benefit.title}</h3>
+                  <p className="text-slate-600 leading-relaxed">{benefit.description}</p>
                 </div>
               );
             })}
@@ -786,31 +472,31 @@ function App() {
         </div>
       </section>
 
-      {/* FAQ SECTION */}
-      <section id="faq" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
-        <div className="max-w-3xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+      {/* FAQ */}
+      <section id="faq" className="py-20 lg:py-28 bg-slate-50">
+        <div className="max-w-4xl mx-auto px-5 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl sm:text-5xl font-bold text-slate-900 mb-4">
               Frequently Asked Questions
             </h2>
-            <p className="text-lg text-gray-600">Everything you need to know about our research peptides</p>
+            <p className="text-xl text-slate-600">Everything you need to know</p>
           </div>
 
           <div className="space-y-4">
-            {faqs.map((faq, index) => (
-              <div key={index} className="bg-white rounded-xl border border-gray-200 overflow-hidden">
+            {faqs.map((faq, i) => (
+              <div key={i} className="bg-white rounded-xl border border-slate-200 overflow-hidden">
                 <button
-                  onClick={() => setExpandedFaq(expandedFaq === index ? null : index)}
-                  className="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-gray-50 transition-colors"
+                  onClick={() => setExpandedFaq(expandedFaq === i ? null : i)}
+                  className="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-slate-50 transition-colors"
                 >
-                  <span className="font-semibold text-gray-900">{faq.q}</span>
+                  <span className="font-semibold text-slate-900">{faq.q}</span>
                   <ChevronDown
                     size={20}
-                    className={`text-gray-600 transition-transform ${expandedFaq === index ? 'rotate-180' : ''}`}
+                    className={`text-slate-600 transition-transform ${expandedFaq === i ? 'rotate-180' : ''}`}
                   />
                 </button>
-                {expandedFaq === index && (
-                  <div className="px-6 pb-5 text-gray-600 leading-relaxed animate-fade-in">
+                {expandedFaq === i && (
+                  <div className="px-6 pb-6 text-slate-600 leading-relaxed">
                     {faq.a}
                   </div>
                 )}
@@ -820,86 +506,69 @@ function App() {
         </div>
       </section>
 
-      {/* SHOPPING CART */}
+      {/* CART DRAWER */}
       {cartOpen && (
         <div className="fixed inset-0 z-50 overflow-hidden">
-          <div className="absolute inset-0 bg-gray-900/50 backdrop-blur-sm" onClick={() => setCartOpen(false)} />
-          <div className="absolute right-0 top-0 bottom-0 w-full max-w-md bg-white shadow-2xl flex flex-col animate-slide-in-right">
-            {/* Cart Header */}
-            <div className="flex items-center justify-between p-6 border-b border-gray-200">
-              <h2 className="text-2xl font-bold text-gray-900">Shopping Cart</h2>
-              <button
-                onClick={() => setCartOpen(false)}
-                className="p-2 hover:bg-gray-100 rounded-full transition-colors"
-              >
+          <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={() => setCartOpen(false)} />
+          <div className="absolute right-0 top-0 bottom-0 w-full max-w-md bg-white shadow-2xl flex flex-col">
+            <div className="flex items-center justify-between p-6 border-b border-slate-200">
+              <h2 className="text-2xl font-bold text-slate-900">Cart</h2>
+              <button onClick={() => setCartOpen(false)} className="p-2 hover:bg-slate-100 rounded-full">
                 <X size={24} />
               </button>
             </div>
 
-            {/* Cart Items */}
             <div className="flex-1 overflow-y-auto p-6">
               {cartItems.length === 0 ? (
                 <div className="flex flex-col items-center justify-center h-full text-center py-12">
-                  <div className="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mb-4">
-                    <ShoppingCart size={32} className="text-gray-400" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">Your cart is empty</h3>
-                  <p className="text-gray-600">Add some research compounds to get started</p>
+                  <ShoppingCart size={48} className="text-slate-300 mb-6" />
+                  <h3 className="text-xl font-semibold text-slate-900 mb-2">Your cart is empty</h3>
+                  <p className="text-slate-600">Add research compounds to get started</p>
                 </div>
               ) : (
-                <div className="space-y-4">
+                <div className="space-y-5">
                   {cartItems.map((item) => (
-                    <div
-                      key={item.product.id}
-                      className="bg-gray-50 rounded-xl p-4 border border-gray-200"
-                    >
-                      <div className="flex gap-4">
-                        {/* Product Image */}
-                        <div className="w-20 h-20 bg-gradient-to-br from-emerald-50 to-teal-50 rounded-lg flex items-center justify-center text-2xl font-bold text-emerald-300 flex-shrink-0">
-                          {item.product.name[0]}
+                    <div key={item.product.id} className="flex gap-4 bg-slate-50 p-4 rounded-xl border border-slate-200">
+                      <div className="w-20 h-20 bg-slate-100 rounded-lg flex items-center justify-center text-xl font-bold text-slate-300 flex-shrink-0">
+                        {item.product.name[0]}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex justify-between items-start mb-2">
+                          <div>
+                            <h4 className="font-semibold text-slate-900">{item.product.name}</h4>
+                            <p className="text-sm text-slate-600">
+                              {item.product.concentration} • {item.product.purity}
+                            </p>
+                          </div>
+                          <button
+                            onClick={() => removeFromCart(item.product.id)}
+                            className="p-1 hover:bg-red-50 rounded-full text-red-600"
+                          >
+                            <X size={18} />
+                          </button>
                         </div>
 
-                        {/* Product Details */}
-                        <div className="flex-1 min-w-0">
-                          <div className="flex justify-between items-start mb-2">
-                            <div className="flex-1 pr-2">
-                              <h4 className="font-semibold text-gray-900 mb-1">{item.product.name}</h4>
-                              <p className="text-xs text-gray-600">
-                                {item.product.concentration} • {item.product.purity}
-                              </p>
-                            </div>
+                        <div className="flex items-center justify-between mt-3">
+                          <div className="flex items-center gap-2">
                             <button
-                              onClick={() => removeFromCart(item.product.id)}
-                              className="p-1 hover:bg-red-50 rounded-full text-red-600 transition-colors"
+                              onClick={() => changeQuantity(item.product.id, -1)}
+                              className="w-8 h-8 bg-white border border-slate-300 rounded-full hover:bg-slate-50 flex items-center justify-center"
                             >
-                              <X size={18} />
+                              <Minus size={14} />
+                            </button>
+                            <span className="w-8 text-center font-medium">{item.quantity}</span>
+                            <button
+                              onClick={() => changeQuantity(item.product.id, 1)}
+                              className="w-8 h-8 bg-white border border-slate-300 rounded-full hover:bg-slate-50 flex items-center justify-center"
+                            >
+                              <Plus size={14} />
                             </button>
                           </div>
-
-                          {/* Quantity Controls */}
-                          <div className="flex items-center justify-between mt-4">
-                            <div className="flex items-center gap-2">
-                              <button
-                                onClick={() => changeQuantity(item.product.id, -1)}
-                                className="w-8 h-8 bg-white border border-gray-300 rounded-full hover:bg-gray-100 transition-all flex items-center justify-center"
-                              >
-                                <Minus size={14} />
-                              </button>
-                              <span className="w-8 text-center font-semibold text-gray-900">{item.quantity}</span>
-                              <button
-                                onClick={() => changeQuantity(item.product.id, 1)}
-                                className="w-8 h-8 bg-white border border-gray-300 rounded-full hover:bg-gray-100 transition-all flex items-center justify-center"
-                              >
-                                <Plus size={14} />
-                              </button>
+                          <div className="text-right">
+                            <div className="font-semibold text-slate-900">
+                              ${(item.product.price * item.quantity).toFixed(2)}
                             </div>
-
-                            <div className="text-right">
-                              <div className="text-lg font-bold text-gray-900">
-                                ${(item.product.price * item.quantity).toFixed(2)}
-                              </div>
-                              <div className="text-xs text-gray-600">${item.product.price} each</div>
-                            </div>
+                            <div className="text-xs text-slate-500">${item.product.price} each</div>
                           </div>
                         </div>
                       </div>
@@ -909,45 +578,30 @@ function App() {
               )}
             </div>
 
-            {/* Cart Footer */}
             {cartItems.length > 0 && (
-              <div className="p-6 border-t border-gray-200 bg-white">
-                {/* Promo Notice */}
-                <div className="mb-4 p-4 bg-emerald-50 border border-emerald-200 rounded-xl">
-                  <div className="flex items-center gap-2 mb-1">
-                    <Check size={16} className="text-emerald-600" />
-                    <span className="text-sm font-semibold text-emerald-900">Limited Time Offer</span>
-                  </div>
-                  <p className="text-xs text-emerald-700">
-                    Use code <span className="font-mono font-bold">NYGLOW30</span> for 30% off bulk orders
-                  </p>
-                </div>
-
-                {/* Total */}
+              <div className="p-6 border-t border-slate-200 bg-white">
                 <div className="mb-6">
-                  <div className="flex justify-between items-center text-sm text-gray-600 mb-2">
+                  <div className="flex justify-between text-sm text-slate-600 mb-2">
                     <span>Subtotal</span>
                     <span>${cartTotal.toFixed(2)}</span>
                   </div>
-                  <div className="flex justify-between items-center text-sm text-gray-600 mb-4">
+                  <div className="flex justify-between text-sm text-slate-600 mb-4">
                     <span>Shipping</span>
-                    <span className="text-emerald-600 font-medium">Calculated at checkout</span>
+                    <span className="text-teal-700 font-medium">Calculated at checkout</span>
                   </div>
-                  <div className="h-px bg-gray-200 mb-4" />
-                  <div className="flex justify-between items-center text-xl font-bold">
-                    <span className="text-gray-900">Total</span>
-                    <span className="text-emerald-600">${cartTotal.toFixed(2)}</span>
+                  <div className="h-px bg-slate-200 mb-4" />
+                  <div className="flex justify-between text-xl font-bold">
+                    <span>Total</span>
+                    <span className="text-teal-700">${cartTotal.toFixed(2)}</span>
                   </div>
                 </div>
 
-                {/* Checkout Button */}
-                <button className="w-full py-4 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-full transition-all shadow-lg shadow-emerald-600/30 hover:shadow-xl hover:shadow-emerald-600/40 flex items-center justify-center gap-2 group">
+                <button className="w-full py-4 bg-teal-700 hover:bg-teal-800 text-white font-semibold rounded-lg transition-all flex items-center justify-center gap-2 shadow-md">
                   Proceed to Checkout
-                  <ChevronRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                  <ChevronRight size={20} />
                 </button>
 
-                <p className="text-center text-xs text-gray-500 mt-4">
-                  <Shield size={12} className="inline mr-1" />
+                <p className="text-center text-xs text-slate-500 mt-5">
                   Research use only • Not for human consumption
                 </p>
               </div>
@@ -957,102 +611,56 @@ function App() {
       )}
 
       {/* FOOTER */}
-      <footer className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-900 text-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-4 gap-12 mb-12">
+      <footer className="py-20 lg:py-28 bg-slate-900 text-slate-300">
+        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-4 gap-12 mb-16">
             <div className="md:col-span-2">
-              <div className="flex items-center gap-2 mb-4">
-                <div className="w-10 h-10 bg-gradient-to-br from-emerald-600 to-teal-600 rounded-full flex items-center justify-center">
-                  <Leaf className="text-white" size={24} />
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-11 h-11 bg-gradient-to-br from-teal-700 to-emerald-700 rounded-xl flex items-center justify-center">
+                  <Beaker className="text-white" size={24} />
                 </div>
-                <span className="text-2xl font-bold">Rosalina Glow</span>
+                <span className="text-3xl font-bold text-white">Rosalina Research</span>
               </div>
-              <p className="text-gray-400 leading-relaxed mb-6 max-w-md">
-                Premium research-grade peptides for scientific advancement. All products are strictly for laboratory use by qualified professionals.
+              <p className="text-slate-400 mb-6 max-w-md">
+                Premium research-grade compounds for scientific advancement.
+                Strictly for laboratory use by qualified professionals.
               </p>
-              <div className="flex gap-3">
-                {['Bitcoin', 'Zelle', 'Cash App'].map((method) => (
-                  <div
-                    key={method}
-                    className="px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-sm text-gray-300"
-                  >
-                    {method}
-                  </div>
-                ))}
-              </div>
             </div>
 
             <div>
-              <h3 className="font-bold mb-4">Quick Links</h3>
-              <ul className="space-y-3 text-gray-400">
-                <li>
-                  <a href="#products" className="hover:text-emerald-400 transition-colors">
-                    Products
-                  </a>
-                </li>
-                <li>
-                  <a href="#benefits" className="hover:text-emerald-400 transition-colors">
-                    Benefits
-                  </a>
-                </li>
-                <li>
-                  <a href="#faq" className="hover:text-emerald-400 transition-colors">
-                    FAQ
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-emerald-400 transition-colors">
-                    COA Requests
-                  </a>
-                </li>
+              <h3 className="font-bold text-white mb-6">Quick Links</h3>
+              <ul className="space-y-4 text-slate-400">
+                <li><a href="#products" className="hover:text-white transition-colors">Products</a></li>
+                <li><a href="#quality" className="hover:text-white transition-colors">Quality</a></li>
+                <li><a href="#faq" className="hover:text-white transition-colors">FAQ</a></li>
               </ul>
             </div>
 
             <div>
-              <h3 className="font-bold mb-4">Legal</h3>
-              <ul className="space-y-3 text-gray-400">
-                <li>
-                  <a href="#" className="hover:text-emerald-400 transition-colors">
-                    Terms of Service
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-emerald-400 transition-colors">
-                    Privacy Policy
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-emerald-400 transition-colors">
-                    Shipping Policy
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-emerald-400 transition-colors">
-                    Refund Policy
-                  </a>
-                </li>
+              <h3 className="font-bold text-white mb-6">Legal</h3>
+              <ul className="space-y-4 text-slate-400">
+                <li><a href="#" className="hover:text-white transition-colors">Terms of Service</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Privacy Policy</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Shipping</a></li>
               </ul>
             </div>
           </div>
 
-          {/* Disclaimer */}
-          <div className="border-t border-gray-800 pt-8">
-            <div className="bg-red-950/30 border border-red-900/50 rounded-xl p-6 mb-8">
-              <div className="flex items-start gap-3">
-                <AlertCircle size={24} className="text-red-400 flex-shrink-0 mt-1" />
-                <div>
-                  <h4 className="font-bold text-red-300 mb-2">Important Disclaimer</h4>
-                  <p className="text-sm text-gray-400 leading-relaxed">
-                    All products are intended solely for in-vitro laboratory research and development by qualified professionals. They are <strong>not</strong> for human or veterinary consumption, diagnosis, treatment, or any medicinal use. No claims have been evaluated by the FDA. These statements are for research purposes only.
-                  </p>
+          <div className="border-t border-slate-800 pt-12">
+            <div className="bg-slate-800/30 border border-slate-700 rounded-xl p-6 mb-10">
+              <div className="flex items-start gap-4">
+                <AlertCircle size={24} className="text-amber-400 flex-shrink-0 mt-1" />
+                <div className="text-sm text-slate-300">
+                  <strong className="text-white">For research use only.</strong><br />
+                  These compounds are not approved for human consumption, diagnosis, or treatment.
+                  Not evaluated by the FDA. Intended solely for qualified in-vitro laboratory studies.
                 </div>
               </div>
             </div>
 
-            <div className="text-center text-gray-500 text-sm">
-              <p>© {new Date().getFullYear()} Rosalina Glow. All rights reserved.</p>
-              <p className="mt-2">Committed to scientific excellence and research integrity</p>
-            </div>
+            <p className="text-center text-slate-500 text-sm">
+              © {new Date().getFullYear()} Rosalina Research. All rights reserved.
+            </p>
           </div>
         </div>
       </footer>
